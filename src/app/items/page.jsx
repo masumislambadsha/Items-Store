@@ -17,7 +17,7 @@ export default function ItemsPage() {
   const fetchItems = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/api/items");
+      const response = await fetch("/api/items");
       const data = await response.json();
 
       if (data.success) {

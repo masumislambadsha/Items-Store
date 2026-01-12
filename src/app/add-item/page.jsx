@@ -67,7 +67,7 @@ export default function AddItemPage() {
         category: formData.category,
       };
 
-      const response = await fetch("http://localhost:5000/api/items", {
+      const response = await fetch("/api/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
