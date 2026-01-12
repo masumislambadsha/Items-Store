@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ItemsGridSkeleton } from "../../components/ui/Skeleton";
 
 export default function ItemsPage() {
   const [items, setItems] = useState([]);
@@ -34,10 +35,13 @@ export default function ItemsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="loading-spinner mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading items...</p>
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="h-10 bg-gray-200 rounded w-64 mx-auto mb-4 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 rounded w-96 mx-auto animate-pulse"></div>
+          </div>
+          <ItemsGridSkeleton count={6} />
         </div>
       </div>
     );
@@ -54,7 +58,7 @@ export default function ItemsPage() {
           <p className="text-gray-600 mb-4">{error}</p>
           <button
             onClick={fetchItems}
-            className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md transition-colors"
+            className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-md transition-colors"
           >
             Try Again
           </button>
@@ -99,50 +103,63 @@ export default function ItemsPage() {
 }
 
 function ItemCard({ item, index }) {
+  const [imageLoading, setImageLoading] = useState(true);
+
   return (
     <div
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
       data-aos="fade-up"
       data-aos-delay={index * 100}
     >
       <Link href={`/items/${item.id}`}>
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 overflow-hidden bg-gray-200">
+          {imageLoading && (
+            <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+            </div>
+          )}
           <Image
             src={item.image}
             alt={item.name}
             fill
-            className="object-cover hover:scale-110 transition-transform duration-300"
+            className={`object-cover group-hover:scale-110 transition-all duration-500 ${
+              imageLoading ? "opacity-0" : "opacity-100"
+            }`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onLoad={() => setImageLoading(false)}
           />
           {item.inStock && (
-            <div className="absolute top-4 left-4">
-              <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+            <div className="absolute top-4 left-4 z-10">
+              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                 In Stock
               </span>
             </div>
           )}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
         </div>
 
         <div className="p-6">
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-xl font-semibold text-gray-900 line-clamp-2">
+            <h3 className="text-xl font-semibold text-gray-900 line-clamp-2 group-hover:text-black transition-colors duration-200">
               {item.name}
             </h3>
-            <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+            <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap ml-2">
               {item.category}
             </span>
           </div>
 
-          <p className="text-gray-600 mb-4 line-clamp-3">{item.description}</p>
+          <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+            {item.description}
+          </p>
 
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-primary-600">
+            <span className="text-2xl font-bold text-black">
               ${item.price.toFixed(2)}
             </span>
-            <span className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+            <span className="inline-flex items-center text-black hover:text-gray-700 font-medium group-hover:translate-x-1 transition-all duration-200">
               View Details
               <svg
-                className="ml-1 w-4 h-4"
+                className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
