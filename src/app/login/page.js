@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/";
+  const redirectTo = searchParams.get("redirect") || "/items";
 
   useEffect(() => {
     const authToken = Cookies.get("auth-token");
@@ -47,14 +47,20 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (data.success) {
-        // Set client-side cookie for immediate UI updates
-        Cookies.set("auth-token", "authenticated-user-token", {
-          expires: 7,
-          path: "/",
-        });
-
+        console.log("✅ Login successful!");
         toast.success("Login successful! Welcome back.");
-        router.push(redirectTo);
+
+        // Refresh navbar authentication status
+        if (window.refreshNavbarAuth) {
+          console.log("🔄 Refreshing navbar auth");
+          await window.refreshNavbarAuth();
+        }
+
+        // Redirect after a short delay to allow navbar to update
+        setTimeout(() => {
+          console.log("🚀 Redirecting to:", redirectTo);
+          router.push(redirectTo);
+        }, 1000);
       } else {
         toast.error(data.error || "Login failed");
       }
@@ -71,7 +77,7 @@ export default function LoginPage() {
       email: "admin@itemstore.com",
       password: "admin123",
     });
-    toast("Demo credentials filled!");
+    toast.info("Demo credentials filled!");
   };
 
   return (
@@ -119,7 +125,7 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-mdutline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}

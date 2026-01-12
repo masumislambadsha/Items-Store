@@ -2,35 +2,67 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const pathname = usePathname();
 
+  // Check authentication status via API
+  const checkAuth = async () => {
+    try {
+      const response = await fetch("/api/auth/status", {
+        method: "GET",
+        credentials: "include", // Include cookies
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setIsAuthenticated(data.isAuthenticated);
+        setUser(data.user);
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    } catch (error) {
+      setIsAuthenticated(false);
+      setUser(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Check auth on mount and route changes
   useEffect(() => {
-    const authToken = Cookies.get("auth-token");
-    setIsAuthenticated(!!authToken);
+    checkAuth();
+  }, [pathname]);
+
+  // Make refresh function globally available for login page
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.refreshNavbarAuth = checkAuth;
+    }
   }, []);
 
   const handleLogout = async () => {
     try {
-      // Call logout API
-      await fetch("/api/auth/logout", {
+      const response = await fetch("/api/auth/logout", {
         method: "POST",
+        credentials: "include",
       });
 
-      // Remove client-side cookie
-      Cookies.remove("auth-token");
-      setIsAuthenticated(false);
-      router.push("/");
+      if (response.ok) {
+        setIsAuthenticated(false);
+        setUser(null);
+        router.push("/");
+      }
     } catch (error) {
-      console.error("Logout error:", error);
-      // Still remove cookie and redirect even if API call fails
-      Cookies.remove("auth-token");
       setIsAuthenticated(false);
+      setUser(null);
       router.push("/");
     }
   };
@@ -49,6 +81,7 @@ export default function Navbar() {
             <Link href="/" className="flex-shrink-0">
               <h1 className="text-2xl font-bold text-primary-600">ItemStore</h1>
             </Link>
+            {/* Debug info */}
           </div>
 
           {/* Desktop Navigation */}
@@ -64,12 +97,34 @@ export default function Navbar() {
             ))}
 
             {isAuthenticated ? (
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Logout
-              </button>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {user?.name || "Admin User"}
+                  </span>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
@@ -84,13 +139,12 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
                 <svg
                   className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -105,7 +159,6 @@ export default function Navbar() {
               ) : (
                 <svg
                   className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -139,15 +192,37 @@ export default function Navbar() {
             ))}
 
             {isAuthenticated ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setIsOpen(false);
-                }}
-                className="w-full text-left bg-red-600 hover:bg-red-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Logout
-              </button>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3 px-3 py-2 bg-gray-50 rounded-md">
+                  <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {user?.name || "Admin User"}
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="w-full text-left bg-red-600 hover:bg-red-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
