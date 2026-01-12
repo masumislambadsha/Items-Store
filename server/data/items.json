@@ -34,7 +34,7 @@
     "name": "Professional Camera Lens",
     "description": "High-performance camera lens for professional photography with superior image quality and versatility.",
     "price": 899.99,
-    "image": "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     "category": "Photography",
     "inStock": true,
     "createdAt": "2026-01-12T17:38:55.117Z"
@@ -54,7 +54,7 @@
     "name": "Minimalist Desk Lamp",
     "description": "Modern minimalist desk lamp with adjustable brightness and sleek design. Perfect for any workspace.",
     "price": 79.99,
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     "category": "Home & Office",
     "inStock": true,
     "createdAt": "2026-01-12T17:38:55.117Z"
