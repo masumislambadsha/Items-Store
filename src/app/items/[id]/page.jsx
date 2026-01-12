@@ -22,7 +22,7 @@ export default function ItemDetailsPage() {
   const fetchItem = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/items/${id}`);
+      const response = await fetch(`/api/items/${id}`);
       const data = await response.json();
 
       if (data.success) {
@@ -69,7 +69,7 @@ export default function ItemDetailsPage() {
             </button>
             <Link
               href="/items"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md transition-colors inline-block"
+              className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-md transition-colors inline-block"
             >
               Browse Items
             </Link>
@@ -87,7 +87,7 @@ export default function ItemDetailsPage() {
             <li className="inline-flex items-center">
               <Link
                 href="/"
-                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600"
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-black"
               >
                 <svg
                   className="w-4 h-4 mr-2"
@@ -114,7 +114,7 @@ export default function ItemDetailsPage() {
                 </svg>
                 <Link
                   href="/items"
-                  className="ml-1 text-sm font-medium text-gray-700 hover:text-primary-600 md:ml-2"
+                  className="ml-1 text-sm font-medium text-gray-700 hover:text-black md:ml-2"
                 >
                   Items
                 </Link>
@@ -163,7 +163,7 @@ export default function ItemDetailsPage() {
 
             <div className="p-8" data-aos="fade-left">
               <div className="mb-4">
-                <span className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full">
+                <span className="inline-block bg-gray-100 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">
                   {item.category}
                 </span>
               </div>
@@ -172,7 +172,7 @@ export default function ItemDetailsPage() {
                 {item.name}
               </h1>
 
-              <div className="text-4xl font-bold text-primary-600 mb-6">
+              <div className="text-4xl font-bold text-black mb-6">
                 ${item.price.toFixed(2)}
               </div>
 
@@ -232,7 +232,7 @@ export default function ItemDetailsPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                  className="flex-1 bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
                   disabled={!item.inStock}
                 >
                   {item.inStock ? (

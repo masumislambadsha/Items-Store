@@ -79,7 +79,7 @@ export default function AddItemPage() {
 
       if (data.success) {
         toast.success("Item created successfully!");
-        router.push(`/items/${data.data.id}`);
+        router.push("/items");
       } else {
         toast.error(data.error || "Failed to create item");
       }

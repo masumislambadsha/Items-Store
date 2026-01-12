@@ -77,7 +77,7 @@ let items = [
   },
 ];
 
-// GET /api/items - Get all items
+
 export async function GET() {
   try {
     return NextResponse.json({
