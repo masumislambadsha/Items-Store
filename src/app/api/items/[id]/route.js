@@ -79,7 +79,7 @@ const items = [
 // GET /api/items/[id] - Get single item
 export async function GET(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const item = items.find((item) => item.id === id);
 
     if (!item) {
@@ -111,7 +111,7 @@ export async function GET(request, { params }) {
 // PUT /api/items/[id] - Update item
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { name, description, price, image, category, inStock } =
       await request.json();
 
@@ -161,7 +161,7 @@ export async function PUT(request, { params }) {
 // DELETE /api/items/[id] - Delete item
 export async function DELETE(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const itemIndex = items.findIndex((item) => item.id === id);
 
     if (itemIndex === -1) {
