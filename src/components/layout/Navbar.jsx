@@ -56,9 +56,6 @@ export default function Navbar() {
             <Link href="/" className="flex-shrink-0">
               <h1 className="text-2xl font-bold text-primary-600">ItemStore</h1>
             </Link>
-            <div className="ml-4 text-xs text-gray-500">
-              Auth: {isAuthenticated ? "✅" : "❌"} | Status: {status}
-            </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
