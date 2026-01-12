@@ -1,69 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const pathname = usePathname();
+  const { data: session, status } = useSession();
 
-  // Check authentication status via API
-  const checkAuth = async () => {
-    try {
-      const response = await fetch("/api/auth/status", {
-        method: "GET",
-        credentials: "include", // Include cookies
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setIsAuthenticated(data.isAuthenticated);
-        setUser(data.user);
-      } else {
-        setIsAuthenticated(false);
-        setUser(null);
-      }
-    } catch (error) {
-      setIsAuthenticated(false);
-      setUser(null);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Check auth on mount and route changes
-  useEffect(() => {
-    checkAuth();
-  }, [pathname]);
-
-  // Make refresh function globally available for login page
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.refreshNavbarAuth = checkAuth;
-    }
-  }, []);
+  const isAuthenticated = !!session;
+  const isLoading = status === "loading";
+  const user = session?.user;
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        setIsAuthenticated(false);
-        setUser(null);
-        router.push("/");
-      }
-    } catch (error) {
-      setIsAuthenticated(false);
-      setUser(null);
+      await signOut({ redirect: false });
       router.push("/");
+    } catch (error) {
+      console.error("Logout error:", error);
     }
   };
 
@@ -72,6 +28,25 @@ export default function Navbar() {
     { href: "/items", label: "Items" },
     ...(isAuthenticated ? [{ href: "/add-item", label: "Add Item" }] : []),
   ];
+
+  if (isLoading) {
+    return (
+      <nav className="bg-white shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link href="/" className="flex-shrink-0">
+                <h1 className="text-2xl font-bold text-primary-600">
+                  ItemStore
+                </h1>
+              </Link>
+              <div className="ml-4 text-xs text-gray-500">Loading...</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -82,6 +57,9 @@ export default function Navbar() {
               <h1 className="text-2xl font-bold text-primary-600">ItemStore</h1>
             </Link>
             {/* Debug info */}
+            <div className="ml-4 text-xs text-gray-500">
+              Auth: {isAuthenticated ? "✅" : "❌"} | Status: {status}
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -99,23 +77,31 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
+                  {user?.image ? (
+                    <img
+                      src={user.image}
+                      alt={user.name || "User"}
+                      className="w-8 h-8 rounded-full"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </div>
+                  )}
                   <span className="text-sm font-medium text-gray-700">
-                    {user?.name || "Admin User"}
+                    {user?.name || "User"}
                   </span>
                 </div>
                 <button
@@ -194,23 +180,31 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="space-y-2">
                 <div className="flex items-center space-x-3 px-3 py-2 bg-gray-50 rounded-md">
-                  <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
+                  {user?.image ? (
+                    <img
+                      src={user.image}
+                      alt={user.name || "User"}
+                      className="w-8 h-8 rounded-full"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </div>
+                  )}
                   <span className="text-sm font-medium text-gray-700">
-                    {user?.name || "Admin User"}
+                    {user?.name || "User"}
                   </span>
                 </div>
                 <button

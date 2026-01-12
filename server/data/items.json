@@ -88,5 +88,15 @@
     "category": "Electronics",
     "inStock": true,
     "createdAt": "2026-01-12T19:03:18.550Z"
+  },
+  {
+    "id": "a519859c-e01e-4316-930c-bb5bac775ffd",
+    "name": "Sample Product",
+    "description": "This is a sample product with great features and excellent quality. Perfect for demonstration purposes.",
+    "price": 99.99,
+    "image": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    "category": "Electronics",
+    "inStock": true,
+    "createdAt": "2026-01-12T19:45:10.747Z"
   }
 ]
