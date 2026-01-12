@@ -17,7 +17,6 @@ export default function LoginPage() {
   const redirectTo = searchParams.get("callbackUrl") || "/items";
 
   useEffect(() => {
-    // Check if user is already logged in
     const checkSession = async () => {
       const session = await getSession();
       if (session) {
@@ -111,7 +110,6 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-8 space-y-6">
-          {/* Google Sign In Button */}
           <div>
             <button
               onClick={handleGoogleLogin}
@@ -152,7 +150,6 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Credentials Form */}
           <form className="space-y-6" onSubmit={handleCredentialsLogin}>
             <div className="rounded-md shadow-sm -space-y-px">
               <div>

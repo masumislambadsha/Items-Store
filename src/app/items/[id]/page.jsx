@@ -82,7 +82,6 @@ export default function ItemDetailsPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
         <nav className="flex mb-8" data-aos="fade-up">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
@@ -142,10 +141,8 @@ export default function ItemDetailsPage() {
           </ol>
         </nav>
 
-        {/* Item Details */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Image Section */}
             <div className="relative h-96 lg:h-full" data-aos="fade-right">
               <Image
                 src={item.image}
@@ -164,7 +161,6 @@ export default function ItemDetailsPage() {
               )}
             </div>
 
-            {/* Details Section */}
             <div className="p-8" data-aos="fade-left">
               <div className="mb-4">
                 <span className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full">
@@ -189,7 +185,6 @@ export default function ItemDetailsPage() {
                 </p>
               </div>
 
-              {/* Item Meta */}
               <div className="border-t border-gray-200 pt-6 mb-8">
                 <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
@@ -235,7 +230,6 @@ export default function ItemDetailsPage() {
                 </dl>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"

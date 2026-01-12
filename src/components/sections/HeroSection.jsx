@@ -6,7 +6,6 @@ import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { gsap } from "gsap";
 import Link from "next/link";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -87,7 +86,6 @@ export default function HeroSection() {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div className="relative h-full">
-              {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{ backgroundImage: `url(${slide.image})` }}
@@ -95,7 +93,6 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>
               </div>
 
-              {/* Content */}
               <div className="relative z-10 h-full flex items-center justify-center">
                 <div className="text-center text-white max-w-4xl mx-auto px-4">
                   <h1
@@ -125,7 +122,6 @@ export default function HeroSection() {
         ))}
       </Swiper>
 
-      {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="animate-bounce">
           <svg

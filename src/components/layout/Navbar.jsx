@@ -56,13 +56,11 @@ export default function Navbar() {
             <Link href="/" className="flex-shrink-0">
               <h1 className="text-2xl font-bold text-primary-600">ItemStore</h1>
             </Link>
-            {/* Debug info */}
             <div className="ml-4 text-xs text-gray-500">
               Auth: {isAuthenticated ? "✅" : "❌"} | Status: {status}
             </div>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -121,7 +119,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -162,7 +159,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">

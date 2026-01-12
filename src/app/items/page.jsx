@@ -66,7 +66,6 @@ export default function ItemsPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-12" data-aos="fade-up">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Our Amazing Items
@@ -77,7 +76,6 @@ export default function ItemsPage() {
           </p>
         </div>
 
-        {/* Items Grid */}
         {items.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">📦</div>

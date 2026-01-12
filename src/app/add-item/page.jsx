@@ -8,7 +8,7 @@ export default function AddItemPage() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price: "",
+    price,
     image: "",
     category: "General",
   });
@@ -40,7 +40,6 @@ export default function AddItemPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Client-side validation
     if (!formData.name.trim()) {
       toast.error("Item name is required");
       setIsLoading(false);
@@ -109,7 +108,6 @@ export default function AddItemPage() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          {/* Header */}
           <div className="text-center mb-8" data-aos="fade-up">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Add New Item
@@ -119,13 +117,11 @@ export default function AddItemPage() {
             </p>
           </div>
 
-          {/* Form */}
           <form
             onSubmit={handleSubmit}
             className="space-y-6"
             data-aos="fade-up"
           >
-            {/* Item Name */}
             <div>
               <label
                 htmlFor="name"
@@ -145,7 +141,6 @@ export default function AddItemPage() {
               />
             </div>
 
-            {/* Description */}
             <div>
               <label
                 htmlFor="description"
@@ -165,9 +160,7 @@ export default function AddItemPage() {
               />
             </div>
 
-            {/* Price and Category Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Price */}
               <div>
                 <label
                   htmlFor="price"
@@ -189,7 +182,6 @@ export default function AddItemPage() {
                 />
               </div>
 
-              {/* Category */}
               <div>
                 <label
                   htmlFor="category"
@@ -213,7 +205,6 @@ export default function AddItemPage() {
               </div>
             </div>
 
-            {/* Image URL */}
             <div>
               <label
                 htmlFor="image"
@@ -235,7 +226,6 @@ export default function AddItemPage() {
               </p>
             </div>
 
-            {/* Sample Data Button */}
             <div className="flex justify-center">
               <button
                 type="button"
@@ -246,7 +236,6 @@ export default function AddItemPage() {
               </button>
             </div>
 
-            {/* Submit Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <button
                 type="button"

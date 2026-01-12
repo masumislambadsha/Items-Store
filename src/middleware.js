@@ -1,46 +1,26 @@
 import { withAuth } from "next-auth/middleware";
 
-export default withAuth(
-  function middleware(req) {
-    // Add any additional middleware logic here if needed
+export default withAuth(function middleware(req) {}, {
+  callbacks: {
+    authorized: ({ token, req }) => {
+      const { pathname } = req.nextUrl;
+      const protectedRoutes = ["/add-item"];
+      const isProtectedRoute = protectedRoutes.some((route) =>
+        pathname.startsWith(route)
+      );
+
+      if (isProtectedRoute) {
+        return !!token;
+      }
+
+      return true;
+    },
   },
-  {
-    callbacks: {
-      authorized: ({ token, req }) => {
-        const { pathname } = req.nextUrl;
-
-        // Protected routes that require authentication
-        const protectedRoutes = ["/add-item"];
-
-        // Check if the current path is protected
-        const isProtectedRoute = protectedRoutes.some((route) =>
-          pathname.startsWith(route)
-        );
-
-        // If it's a protected route, check if user is authenticated
-        if (isProtectedRoute) {
-          return !!token;
-        }
-
-        // Allow access to non-protected routes
-        return true;
-      },
-    },
-    pages: {
-      signIn: "/login",
-    },
-  }
-);
+  pages: {
+    signIn: "/login",
+  },
+});
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

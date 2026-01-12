@@ -8,8 +8,6 @@ import ServicesSection from "../components/sections/ServicesSection";
 import StatsSection from "../components/sections/StatsSection";
 import TestimonialsSection from "../components/sections/TestimonialsSection";
 
-
-
 export default function Home() {
   return (
     <div className="min-h-screen">
