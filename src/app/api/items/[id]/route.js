@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { items } from "../../../lib/data.js";
+import { items } from "../../../lib/data";
 
 // GET /api/items/[id] - Get single item
 export async function GET(request, { params }) {

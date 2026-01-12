@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { items } from "../../lib/data.js";
+import { items } from "../../lib/data";
 
 // GET /api/items - Get all items
 export async function GET() {
