@@ -8,7 +8,7 @@ export default function AddItemPage() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price,
+    price: "",
     image: "",
     category: "General",
   });
@@ -101,7 +101,7 @@ export default function AddItemPage() {
         "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       category: "Electronics",
     });
-    toast.info("Sample data filled!");
+    toast.success("Sample data filled!");
   };
 
   return (
@@ -134,7 +134,7 @@ export default function AddItemPage() {
                 id="name"
                 name="name"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
                 placeholder="Enter item name"
                 value={formData.name}
                 onChange={handleChange}
@@ -153,7 +153,7 @@ export default function AddItemPage() {
                 name="description"
                 required
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
                 placeholder="Enter item description"
                 value={formData.description}
                 onChange={handleChange}
@@ -175,7 +175,7 @@ export default function AddItemPage() {
                   required
                   min="0"
                   step="0.01"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
                   placeholder="0.00"
                   value={formData.price}
                   onChange={handleChange}
@@ -192,7 +192,7 @@ export default function AddItemPage() {
                 <select
                   id="category"
                   name="category"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
                   value={formData.category}
                   onChange={handleChange}
                 >
@@ -216,7 +216,7 @@ export default function AddItemPage() {
                 type="url"
                 id="image"
                 name="image"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
                 placeholder="https://example.com/image.jpg"
                 value={formData.image}
                 onChange={handleChange}
@@ -230,7 +230,7 @@ export default function AddItemPage() {
               <button
                 type="button"
                 onClick={fillSampleData}
-                className="text-sm text-primary-600 hover:text-primary-500 font-medium"
+                className="text-sm text-black hover:text-gray-700 font-medium"
               >
                 Fill with sample data
               </button>
@@ -247,7 +247,7 @@ export default function AddItemPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="flex-1 bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isLoading ? (
                   <>

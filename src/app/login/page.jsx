@@ -73,7 +73,7 @@ export default function LoginPage() {
       email: "admin@itemstore.com",
       password: "admin123",
     });
-    toast.info("Demo credentials filled!");
+    toast.success("Demo credentials filled!");
   };
 
   return (
