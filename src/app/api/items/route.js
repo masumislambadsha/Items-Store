@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 
-// Mock data - In production, you'd use a database
-let items = [
+// Global items storage - shared across all serverless function instances
+// In production, you'd use a database like PostgreSQL, MongoDB, or Supabase
+global.itemsStore = global.itemsStore || [
   {
     id: "6292860d-3235-4eb0-9f67-11bace383009",
     name: "Premium Wireless Headphones",
@@ -82,8 +83,8 @@ export async function GET() {
   try {
     return NextResponse.json({
       success: true,
-      data: items,
-      count: items.length,
+      data: global.itemsStore,
+      count: global.itemsStore.length,
     });
   } catch (error) {
     console.error("Error fetching items:", error);
@@ -126,7 +127,7 @@ export async function POST(request) {
       createdAt: new Date().toISOString(),
     };
 
-    items.push(newItem);
+    global.itemsStore.push(newItem);
 
     return NextResponse.json(
       {

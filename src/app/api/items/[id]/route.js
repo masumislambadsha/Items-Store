@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-// Mock data - same as in the main items route
-const items = [
+// Initialize global items store if it doesn't exist
+global.itemsStore = global.itemsStore || [
   {
     id: "6292860d-3235-4eb0-9f67-11bace383009",
     name: "Premium Wireless Headphones",
@@ -80,7 +80,7 @@ const items = [
 export async function GET(request, { params }) {
   try {
     const { id } = await params;
-    const item = items.find((item) => item.id === id);
+    const item = global.itemsStore.find((item) => item.id === id);
 
     if (!item) {
       return NextResponse.json(
@@ -115,7 +115,7 @@ export async function PUT(request, { params }) {
     const { name, description, price, image, category, inStock } =
       await request.json();
 
-    const itemIndex = items.findIndex((item) => item.id === id);
+    const itemIndex = global.itemsStore.findIndex((item) => item.id === id);
 
     if (itemIndex === -1) {
       return NextResponse.json(
@@ -129,7 +129,7 @@ export async function PUT(request, { params }) {
 
     // Update item
     const updatedItem = {
-      ...items[itemIndex],
+      ...global.itemsStore[itemIndex],
       ...(name && { name: name.trim() }),
       ...(description && { description: description.trim() }),
       ...(price && { price: parseFloat(price) }),
@@ -139,7 +139,7 @@ export async function PUT(request, { params }) {
       updatedAt: new Date().toISOString(),
     };
 
-    items[itemIndex] = updatedItem;
+    global.itemsStore[itemIndex] = updatedItem;
 
     return NextResponse.json({
       success: true,
@@ -162,7 +162,7 @@ export async function PUT(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
-    const itemIndex = items.findIndex((item) => item.id === id);
+    const itemIndex = global.itemsStore.findIndex((item) => item.id === id);
 
     if (itemIndex === -1) {
       return NextResponse.json(
@@ -174,7 +174,7 @@ export async function DELETE(request, { params }) {
       );
     }
 
-    const deletedItem = items.splice(itemIndex, 1)[0];
+    const deletedItem = global.itemsStore.splice(itemIndex, 1)[0];
 
     return NextResponse.json({
       success: true,
