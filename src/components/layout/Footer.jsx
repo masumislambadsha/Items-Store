@@ -10,9 +10,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold text-primary-400 mb-4">
-              ItemStore
-            </h3>
+            <h3 className="text-2xl font-bold text-gray-400 mb-4">ItemStore</h3>
             <p className="text-gray-300 mb-4 max-w-md">
               Your premier destination for discovering and managing amazing
               items. Built with modern web technologies for the best user
@@ -21,7 +19,7 @@ export default function Footer() {
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-primary-400 transition-colors"
+                className="text-gray-400 hover:text-gray-200 transition-colors"
               >
                 <span className="sr-only">Facebook</span>
                 <svg
@@ -34,7 +32,7 @@ export default function Footer() {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-primary-400 transition-colors"
+                className="text-gray-400 hover:text-gray-200 transition-colors"
               >
                 <span className="sr-only">Twitter</span>
                 <svg
@@ -47,7 +45,7 @@ export default function Footer() {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-primary-400 transition-colors"
+                className="text-gray-400 hover:text-gray-200 transition-colors"
               >
                 <span className="sr-only">GitHub</span>
                 <svg
@@ -67,7 +65,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Home
                 </Link>
@@ -75,7 +73,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/items"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Browse Items
                 </Link>
@@ -83,7 +81,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/login"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Login
                 </Link>
@@ -97,7 +95,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Help Center
                 </a>
@@ -105,7 +103,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Contact Us
                 </a>
@@ -113,7 +111,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Privacy Policy
                 </a>
@@ -121,7 +119,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-300 hover:text-primary-400 transition-colors"
+                  className="text-gray-300 hover:text-gray-100 transition-colors"
                 >
                   Terms of Service
                 </a>

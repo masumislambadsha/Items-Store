@@ -32,7 +32,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-blue-800 text-white relative overflow-hidden"
+      className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white relative overflow-hidden"
       data-aos="fade-up"
     >
       {/* Background Pattern */}
@@ -55,13 +55,13 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link
               href="/items"
-              className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              className="bg-white text-black hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
               Browse Items
             </Link>
             <Link
               href="/login"
-              className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105"
+              className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105"
             >
               Sign Up Now
             </Link>

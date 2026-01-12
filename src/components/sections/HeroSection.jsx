@@ -110,7 +110,7 @@ export default function HeroSection() {
                   <div ref={buttonRef}>
                     <Link
                       href="/items"
-                      className="inline-block bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                      className="inline-block bg-black hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
                     >
                       {slide.cta}
                     </Link>

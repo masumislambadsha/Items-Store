@@ -113,7 +113,7 @@ export default function StatsSection() {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-primary-500 to-blue-600 rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-r from-gray-800 to-black rounded-2xl p-8 text-white">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Join Thousands of Satisfied Customers
             </h3>
@@ -121,7 +121,7 @@ export default function StatsSection() {
               Experience the difference that quality and exceptional service can
               make.
             </p>
-            <button className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+            <button className="bg-white text-black hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
               Start Shopping Today
             </button>
           </div>

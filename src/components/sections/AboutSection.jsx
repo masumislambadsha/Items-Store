@@ -61,8 +61,8 @@ export default function AboutSection() {
               />
             </div>
             {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500 rounded-full opacity-20"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-300 rounded-full opacity-20"></div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-600 rounded-full opacity-20"></div>
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gray-400 rounded-full opacity-20"></div>
           </div>
 
           <div ref={contentRef} className="space-y-6">
@@ -86,33 +86,25 @@ export default function AboutSection() {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-primary-600 mb-2">
-                  10K+
-                </div>
+                <div className="text-3xl font-bold text-black mb-2">10K+</div>
                 <div className="text-gray-600">Happy Customers</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-primary-600 mb-2">
-                  5K+
-                </div>
+                <div className="text-3xl font-bold text-black mb-2">5K+</div>
                 <div className="text-gray-600">Products</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-primary-600 mb-2">
-                  50+
-                </div>
+                <div className="text-3xl font-bold text-black mb-2">50+</div>
                 <div className="text-gray-600">Countries</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-primary-600 mb-2">
-                  99%
-                </div>
+                <div className="text-3xl font-bold text-black mb-2">99%</div>
                 <div className="text-gray-600">Satisfaction</div>
               </div>
             </div>
 
             <div className="pt-6">
-              <button className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <button className="bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
                 Learn More About Us
               </button>
             </div>

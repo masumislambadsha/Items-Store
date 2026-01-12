@@ -51,9 +51,7 @@ export default function Navbar() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-primary-600">
-                  ItemStore
-                </h1>
+                <h1 className="text-2xl font-bold text-black">ItemStore</h1>
               </Link>
               <div className="ml-4 text-xs text-gray-500">Loading...</div>
             </div>
@@ -73,7 +71,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-primary-600">ItemStore</h1>
+              <h1 className="text-2xl font-bold text-black">ItemStore</h1>
             </Link>
           </div>
 
@@ -82,7 +80,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-gray-700 hover:text-black px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 {link.label}
               </Link>
@@ -98,7 +96,7 @@ export default function Navbar() {
                       className="w-8 h-8 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
                       <svg
                         className="w-5 h-5 text-white"
                         fill="none"
@@ -128,7 +126,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 Login
               </Link>
@@ -138,7 +136,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 transition-colors duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-black hover:bg-gray-100 transition-colors duration-200"
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
@@ -182,7 +180,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-gray-700 hover:text-black block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -199,7 +197,7 @@ export default function Navbar() {
                       className="w-8 h-8 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
                       <svg
                         className="w-5 h-5 text-white"
                         fill="none"
@@ -233,7 +231,7 @@ export default function Navbar() {
               <div className="pt-2 border-t border-gray-200">
                 <Link
                   href="/login"
-                  className="bg-primary-600 hover:bg-primary-700 text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                  className="bg-black hover:bg-gray-800 text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Login

@@ -38,7 +38,7 @@ export default function ServicesSection() {
 
   return (
     <section
-      className="py-20 bg-gradient-to-br from-primary-50 to-blue-50"
+      className="py-20 bg-gradient-to-br from-gray-50 to-gray-100"
       data-aos="fade-up"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +76,7 @@ export default function ServicesSection() {
                         className="flex items-center text-sm text-gray-500"
                       >
                         <svg
-                          className="w-4 h-4 text-primary-500 mr-2"
+                          className="w-4 h-4 text-gray-600 mr-2"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -97,7 +97,7 @@ export default function ServicesSection() {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+          <button className="bg-black hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
             Explore All Services
           </button>
         </div>
