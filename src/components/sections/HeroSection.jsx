@@ -22,7 +22,7 @@ export default function HeroSection() {
   const swiperRef = useRef(null);
 
   useEffect(() => {
-    // Simulate loading time for images
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -34,7 +34,7 @@ export default function HeroSection() {
     if (!isLoading) {
       const tl = gsap.timeline();
 
-      // Enhanced entrance animations
+
       tl.fromTo(heroRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5 })
         .fromTo(
           titleRef.current,
@@ -71,7 +71,6 @@ export default function HeroSection() {
           "-=0.4"
         );
 
-      // Floating animation for the scroll indicator
       gsap.to(".scroll-indicator", {
         y: 10,
         duration: 2,
@@ -85,7 +84,7 @@ export default function HeroSection() {
   const handleSlideChange = (swiper) => {
     setCurrentSlide(swiper.activeIndex);
 
-    // Animate slide content
+
     const tl = gsap.timeline();
     tl.fromTo(
       ".slide-content",
@@ -133,7 +132,7 @@ export default function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative h-screen overflow-hidden">
-      {/* Background particles effect */}
+
       <div className="absolute inset-0 z-0">
         <div className="particles-container">
           {Array.from({ length: 20 }).map((_, i) => (
@@ -177,7 +176,7 @@ export default function HeroSection() {
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
             <div className="relative h-full">
-              {/* Background Image with Parallax Effect */}
+
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110 transition-transform duration-[6000ms] ease-out"
                 style={{
@@ -191,7 +190,7 @@ export default function HeroSection() {
                 ></div>
               </div>
 
-              {/* Content */}
+
               <div className="relative z-10 h-full flex items-center justify-center">
                 <div className="slide-content text-center text-white max-w-5xl mx-auto px-4">
                   <div className="mb-6">
@@ -246,7 +245,7 @@ export default function HeroSection() {
         ))}
       </Swiper>
 
-      {/* Custom Navigation */}
+
       <div className="swiper-button-prev-custom absolute left-8 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 cursor-pointer">
         <svg
           className="w-6 h-6"
@@ -279,7 +278,7 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      {/* Scroll Indicator */}
+
       <div className="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center text-white">
           <span className="text-sm mb-2 opacity-75">Scroll to explore</span>
@@ -289,7 +288,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Progress Bar */}
+
       <div className="absolute bottom-0 left-0 right-0 z-20">
         <div className="h-1 bg-white/20">
           <div

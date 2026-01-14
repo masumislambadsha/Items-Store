@@ -8,7 +8,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+
 app.use(
   cors({
     origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
@@ -18,16 +18,13 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Data storage file
 const dataFile = path.join(__dirname, "data", "items.json");
 
-// Ensure data directory exists
 const dataDir = path.join(__dirname, "data");
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
-// Initialize items data if file doesn't exist
 if (!fs.existsSync(dataFile)) {
   const initialItems = [
     {
@@ -107,7 +104,7 @@ if (!fs.existsSync(dataFile)) {
   fs.writeFileSync(dataFile, JSON.stringify(initialItems, null, 2));
 }
 
-// Helper functions
+
 const readItems = () => {
   try {
     const data = fs.readFileSync(dataFile, "utf8");
@@ -128,7 +125,7 @@ const writeItems = (items) => {
   }
 };
 
-// Validation middleware
+
 const validateItem = (req, res, next) => {
   const { name, description, price } = req.body;
 
@@ -157,7 +154,7 @@ const validateItem = (req, res, next) => {
   next();
 };
 
-// Error handling middleware
+
 const errorHandler = (err, req, res, next) => {
   console.error("Error:", err);
   res.status(500).json({
@@ -169,9 +166,7 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-// Routes
 
-// GET /api/items - Get all items
 app.get("/api/items", (req, res) => {
   try {
     const items = readItems();
@@ -188,7 +183,6 @@ app.get("/api/items", (req, res) => {
   }
 });
 
-// GET /api/items/:id - Get single item
 app.get("/api/items/:id", (req, res) => {
   try {
     const { id } = req.params;
@@ -214,7 +208,7 @@ app.get("/api/items/:id", (req, res) => {
   }
 });
 
-// POST /api/items - Create new item
+
 app.post("/api/items", validateItem, (req, res) => {
   try {
     const { name, description, price, image, category } = req.body;
@@ -255,7 +249,7 @@ app.post("/api/items", validateItem, (req, res) => {
   }
 });
 
-// Health check endpoint
+
 app.get("/api/health", (req, res) => {
   res.json({
     success: true,
@@ -264,7 +258,6 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// 404 handler
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
@@ -272,14 +265,14 @@ app.use("*", (req, res) => {
   });
 });
 
-// Error handling middleware
+
 app.use(errorHandler);
 
-// Start server
+
 app.listen(PORT, () => {
-  console.log(`🚀 ItemStore API server running on port ${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-  console.log(`📦 Items endpoint: http://localhost:${PORT}/api/items`);
+  console.log(`ItemStore API server running on port ${PORT}`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
+  console.log(` Items endpoint: http://localhost:${PORT}/api/items`);
 });
 
 module.exports = app;

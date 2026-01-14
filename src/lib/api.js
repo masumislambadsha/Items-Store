@@ -1,7 +1,7 @@
-// API configuration for Vercel deployment
+
 const API_BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "" // Empty string means same domain (your Vercel app)
+    ? ""
     : "http://localhost:3000";
 
 export const apiClient = {

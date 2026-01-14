@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-
-// Global items storage - shared across all serverless function instances
-// In production, you'd use a database like PostgreSQL, MongoDB, or Supabase
 global.itemsStore = global.itemsStore || [
   {
     id: "6292860d-3235-4eb0-9f67-11bace383009",
@@ -78,7 +75,6 @@ global.itemsStore = global.itemsStore || [
   },
 ];
 
-// GET /api/items - Get all items
 export async function GET() {
   try {
     return NextResponse.json({
@@ -98,12 +94,10 @@ export async function GET() {
   }
 }
 
-// POST /api/items - Create new item
 export async function POST(request) {
   try {
     const { name, description, price, image, category } = await request.json();
 
-    // Validation
     if (!name || !description || !price) {
       return NextResponse.json(
         {

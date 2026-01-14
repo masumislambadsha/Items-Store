@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Initialize global items store if it doesn't exist
+
 global.itemsStore = global.itemsStore || [
   {
     id: "6292860d-3235-4eb0-9f67-11bace383009",
@@ -76,7 +76,6 @@ global.itemsStore = global.itemsStore || [
   },
 ];
 
-// GET /api/items/[id] - Get single item
 export async function GET(request, { params }) {
   try {
     const { id } = await params;
@@ -108,7 +107,6 @@ export async function GET(request, { params }) {
   }
 }
 
-// PUT /api/items/[id] - Update item
 export async function PUT(request, { params }) {
   try {
     const { id } = await params;
@@ -127,7 +125,7 @@ export async function PUT(request, { params }) {
       );
     }
 
-    // Update item
+  
     const updatedItem = {
       ...global.itemsStore[itemIndex],
       ...(name && { name: name.trim() }),
@@ -158,7 +156,7 @@ export async function PUT(request, { params }) {
   }
 }
 
-// DELETE /api/items/[id] - Delete item
+
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
